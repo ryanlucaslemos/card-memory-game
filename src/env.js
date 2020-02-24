@@ -37,7 +37,7 @@ export const CARDS = [
 
   {
     component: Icons.GiOpenBook,
-    name: 'bat-mask',
+    name: 'book',
   },
 
   {

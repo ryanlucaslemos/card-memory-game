@@ -15,6 +15,7 @@ export const Container = styled.div`
   margin-bottom: 10px;
   height: 15vh;
   width: 15vw;
+  ${(props) => (!props.data.oppened ? 'transform: rotateY(180deg);' : '')}
 `;
 
 export const InnerContainer = styled.div`
