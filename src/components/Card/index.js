@@ -7,15 +7,16 @@ import {
 
 
 export default function Card({
-  data, changeOppened, index, verifyCards,
+  data, showClickedCard, index, verifyCards, isWaitingAnimation,
 }) {
   const ref = useRef(null);
-  function openCard() {
-    if (data.oppened) return;
-    changeOppened(index);
-    verifyCards(data.name);
-  }
 
+  function openCard() {
+    if (!data.oppened && !isWaitingAnimation) {
+      showClickedCard(index);
+      verifyCards(data.name);
+    }
+  }
 
   return (
     <Container onClick={openCard} data={data} ref={ref}>
@@ -25,14 +26,14 @@ export default function Card({
           <data.component size="5em" />
         </CardBack>
       </InnerContainer>
-
     </Container>
   );
 }
 
 Card.propTypes = {
   data: PropTypes.instanceOf(Object).isRequired,
-  changeOppened: PropTypes.func.isRequired,
+  showClickedCard: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   verifyCards: PropTypes.func.isRequired,
+  isWaitingAnimation: PropTypes.bool.isRequired,
 };

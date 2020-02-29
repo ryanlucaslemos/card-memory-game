@@ -4,7 +4,6 @@ export const Container = styled.div`
 
   background-color: transparent;
   perspective: 1000px;
-
   border: none;
   display: flex;
   align-items: center;
@@ -15,7 +14,7 @@ export const Container = styled.div`
   margin-bottom: 10px;
   height: 15vh;
   width: 15vw;
-  ${(props) => (!props.data.oppened ? 'transform: rotateY(180deg);' : '')}
+  ${(props) => (!props.data.isVisible ? 'transform: rotateY(180deg); cursor: pointer;' : '')}
 `;
 
 export const InnerContainer = styled.div`
@@ -24,7 +23,7 @@ export const InnerContainer = styled.div`
   height: 100%;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  ${(props) => (props.data.oppened ? 'transform: rotateY(180deg);' : '')}
+  ${(props) => (props.data.isVisible ? 'transform: rotateY(180deg);' : '')}
 `;
 
 export const CardSides = styled.div`
