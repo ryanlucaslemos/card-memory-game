@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+
 export default createGlobalStyle`
   * {
     margin: 0;
@@ -19,4 +20,10 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased !important;
   }
 
+`;
+
+export const CardStyle = `
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.02);
 `;

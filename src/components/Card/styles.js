@@ -13,7 +13,7 @@ export const Container = styled.div`
   color: #fff;
   margin-bottom: 10px;
   height: 15vh;
-  width: 15vw;
+  width: ${(props) => props.width}vw;
   ${(props) => (!props.data.isVisible ? 'transform: rotateY(180deg); cursor: pointer;' : '')}
 `;
 

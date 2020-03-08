@@ -1,15 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 
 import PropTypes from 'prop-types';
 import {
   Container, CardBack, CardFront, InnerContainer,
 } from './styles';
-
+import { DIFFICULTIES_META } from '../../env';
+import Context from '../../context';
 
 export default function Card({
   data, showClickedCard, index, verifyCards, isWaitingAnimation,
 }) {
   const ref = useRef(null);
+  const { difficulty } = useContext(Context);
+  const gameDifficulty = DIFFICULTIES_META[difficulty];
 
   function openCard() {
     if (!data.oppened && !isWaitingAnimation) {
@@ -19,7 +22,7 @@ export default function Card({
   }
 
   return (
-    <Container onClick={openCard} data={data} ref={ref}>
+    <Container onClick={openCard} data={data} ref={ref} width={gameDifficulty.CARD_WIDTH}>
       <InnerContainer data={data}>
         <CardFront />
         <CardBack>
