@@ -6,11 +6,13 @@ export const Select = styled.select`
   width: 100%;
   flex: 1;
   text-align: center;
-  padding: 10px;
-  margin-bottom: 60px;
+  padding: 15px;
+  margin-bottom: 30px;
   margin-top: 5px;
   background: #f18867;
   color: #fff;
+  font-size: 18px;
+
 `;
 
 export const Label = styled.label`
