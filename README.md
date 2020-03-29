@@ -1,6 +1,8 @@
 # Implementation of Card Memory Game with React
 
-Based on app idea found in repository [florinpop17/app-ideas](https://github.com/florinpop17/app-ideas/blob/master/Projects/2-Intermediate/Card-Memory-Game.md).
+Based on app idea found in repository [florinpop17/app-ideas](https://github.com/florinpop17/app-ideas/blob/master/Projects/2-Intermediate/Card-Memory-Game.md).  
+
+[Demo](https://elated-lalande-e1e6d3.netlify.com/)
 
 ## Used in this project
 
