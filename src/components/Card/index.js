@@ -13,20 +13,22 @@ export default function Card({
   const ref = useRef(null);
   const { difficulty } = useContext(Context);
   const gameDifficulty = DIFFICULTIES_META[difficulty];
-
   function openCard() {
-    if (!data.oppened && !isWaitingAnimation) {
+    if (!data.isVisible && !isWaitingAnimation) {
       showClickedCard(index);
       verifyCards(data.name);
     }
   }
 
+  function getIconColor() {
+    return data.matched ? '#949494' : undefined;
+  }
   return (
     <Container onClick={openCard} data={data} ref={ref} width={gameDifficulty.CARD_WIDTH}>
       <InnerContainer data={data}>
         <CardFront />
         <CardBack>
-          <data.component size="5em" />
+          <data.component size="5em" color={getIconColor()} />
         </CardBack>
       </InnerContainer>
     </Container>

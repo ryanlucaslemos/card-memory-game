@@ -13,21 +13,25 @@ export const STATUS = {
   TIME_IS_OVER: 'TIME_IS_OVER',
 };
 
+// Time in seconds
 export const DIFFICULTIES_META = {
   EASY: {
-    TIME: 25,
+    TIME: 30,
     CARDS: 6,
     CARD_WIDTH: 30,
+    NAME: 'Fácil',
   },
   MEDIUM: {
     TIME: 45,
     CARDS: 8,
     CARD_WIDTH: 20,
+    NAME: 'Médio',
   },
   HARD: {
     TIME: 45,
     CARDS: 12,
     CARD_WIDTH: 15,
+    Name: 'Difícil',
   },
 };
 

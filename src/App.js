@@ -4,14 +4,15 @@ import GlobalStyle from './global-styles';
 
 import Game from './pages/Game';
 import Start from './pages/Start';
+import Score from './pages/Score';
 import Context from './context';
 import { STATUS } from './env';
 
 function App() {
   const [difficulty, setDifficulty] = useState(null);
   const [status, setStatus] = useState(STATUS.NOT_STARTED);
-  // eslint-disable-next-line prefer-const
-  const [combinatedCards, setCombinatedCards] = useState(0);
+  const [score, setScore] = useState({});
+  const [timeLeft, setTimeLeft] = useState(0);
   const render = () => {
     if (status === STATUS.NOT_STARTED) {
       return <Start />;
@@ -20,17 +21,25 @@ function App() {
     if (status === STATUS.STARTED) {
       return <Game />;
     }
-    return null;
+
+    return <Score score={score} isWinner={status === STATUS.FINISHED} />;
   };
 
-  const finalResult = (result) => {
-    setCombinatedCards(result);
+  const finalResult = (gameScore) => {
+    setScore(gameScore);
   };
 
   return (
     <>
       <Context.Provider value={{
-        difficulty, setDifficulty, status, setStatus, combinatedCards, finalResult,
+        difficulty,
+        setDifficulty,
+        status,
+        setStatus,
+        setScore,
+        finalResult,
+        timeLeft,
+        setTimeLeft,
       }}
       >
         {render()}

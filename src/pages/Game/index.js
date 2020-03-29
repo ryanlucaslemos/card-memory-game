@@ -14,8 +14,9 @@ export default function Game() {
   const [cards, setCards] = useState([]);
   const [lastCard, setLastCard] = useState(null);
   const [isWaitingAnimation, setIsWaitingAnimation] = useState(false);
-  const { difficulty, setStatus } = useContext(Context);
-  const { finalResult } = useContext(Context);
+  const {
+    difficulty, setStatus, timeLeft, finalResult,
+  } = useContext(Context);
   const gameDifficulty = DIFFICULTIES_META[difficulty];
 
   const generateCards = (initialArray) => {
@@ -23,7 +24,7 @@ export default function Game() {
     // Embaralha todas as cartas
     cardsArray = shuffle(cardsArray.concat(initialArray));
 
-    // retira algumas cartas baseadas nas quantidades por questão
+    // retira aleatoriamente algumas cartas baseadas nas quantidades por dificuldade
     cardsArray = cardsArray.slice(0, gameDifficulty.CARDS);
 
     // inclui a flag isVisible e matched
@@ -32,7 +33,7 @@ export default function Game() {
     // dupllica o array concatenando ele mesmo
     cardsArray = cardsArray.concat(cardsArray);
     // aplica uma nova embaralhada
-    return shuffle(cardsArray);
+    return shuffle(shuffle(cardsArray));
   };
 
   useEffect(() => {
@@ -41,7 +42,9 @@ export default function Game() {
   }, []);
 
   function timeOver() {
-    finalResult(cards.filter((card) => card.matched).length / 2);
+    const cardsMatched = cards.filter((card) => card.matched).length / 2;
+
+    finalResult({ cardsMatched, timeLeft: 0 });
     setStatus(STATUS.TIME_IS_OVER);
   }
 
@@ -55,6 +58,14 @@ export default function Game() {
       return { ...card, isVisible };
     });
     setCards(updatedCards);
+  }
+
+  function verifyWin(updatedCards) {
+    const cardsMatched = updatedCards.filter((card) => card.matched).length;
+    if (cardsMatched === updatedCards.length) {
+      setStatus(STATUS.FINISHED);
+      finalResult({ cardsMatched: cardsMatched / 2, timeLeft });
+    }
   }
 
   function verifyCards(cardName) {
@@ -78,8 +89,10 @@ export default function Game() {
     });
 
     if (hasMatched) {
+      verifyWin(updatedCards);
       setCards(updatedCards);
       setLastCard(null);
+
       return;
     }
     setIsWaitingAnimation(true);
@@ -89,6 +102,7 @@ export default function Game() {
       setIsWaitingAnimation(false);
     }, 800);
   }
+
 
   return (
     <>
